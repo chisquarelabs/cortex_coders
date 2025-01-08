@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 //import TodoItem from ‘./TodoItem’;
 function Login() {
     return (
-      <form>
+      <form action="/submit-event" method="POST">
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
           <input 
