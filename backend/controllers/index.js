@@ -1,24 +1,16 @@
 const { Client } = require("pg");
+const Sequelize = require("sequelize");
+const db = require("../models");
+const Users = require("../models").users;
 
-const db = new Client({
-    host: "rubixcube-rds.chwmo8ksmmlm.eu-west-2.rds.amazonaws.com",
-    port: 5432,
-    user: "postgres",
-    password: "TcsvC8wPtcePyy0ke32t",
-    database: "cortex",
-  });
-  
-  db.connect();
-console.log('lll')
-const adminEmail = "admin@gmail.com";
-const adminPassword = "P1nkparr0t";
-
-  const Login = (req, res) => {
-    try {
-        console.log('ooo111')
-    console.log('req---',req.body)
-    if (req.body.email === adminEmail && req.body.password === adminPassword) {
-        console.log('success')
+const Login = async (req, res) => {
+  try {
+    const user = await Users.findOne({
+      where: { email: req.body.email, password: req.body.password },
+      attributes: ["id"],
+    });
+    console.log("user---", user);
+    if (user) {
       res.status(200).send({
         message: "Admin logged in successfully",
         success: true,
@@ -28,26 +20,26 @@ const adminPassword = "P1nkparr0t";
         .status(500)
         .send({ message: "Username or password is incorrect", success: false });
     }
-}catch(err){
-    console.log('errr---',err.message)
-}
-  };
+  } catch (err) {
+    console.log("errr---", err);
+  }
+};
 
-  const Register = (req, res) => {
-    console.log('req---',req.body)
-    // if (req.body.email === adminEmail && req.body.password === adminPassword) {
-    //   res.status(200).send({
-    //     message: "Admin register in successfully",
-    //     success: true,
-    //   });
-    // } else {
-    //   res
-    //     .status(500)
-    //     .send({ message: "Username or password is incorrect", success: false });
-    // }
-  };
+const Register = (req, res) => {
+  console.log("req---", req.body);
+  // if (req.body.email === adminEmail && req.body.password === adminPassword) {
+  //   res.status(200).send({
+  //     message: "Admin register in successfully",
+  //     success: true,
+  //   });
+  // } else {
+  //   res
+  //     .status(500)
+  //     .send({ message: "Username or password is incorrect", success: false });
+  // }
+};
 
-  module.exports = {
-    Login,
-    Register
-  };
+module.exports = {
+  Login,
+  Register,
+};

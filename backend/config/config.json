@@ -1,9 +1,10 @@
+
+  
 {
-  "development": {
     "username": "postgres",
     "password": "TcsvC8wPtcePyy0ke32t",
     "database": "cortex",
-    "host": 5432,
+    "host": "rubixcube-rds.chwmo8ksmmlm.eu-west-2.rds.amazonaws.com",
     "dialect": "postgres"
-  }
 }
+

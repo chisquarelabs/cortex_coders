@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
+    const User = sequelize.define('users', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       dob: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.DATE,
         allowNull: false,
       },
       gender: {
@@ -41,11 +41,11 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'SET NULL',
       },
       created_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
       updated_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
     }, {
@@ -53,7 +53,9 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     });
   
-    User.belongsTo(UserRole, { foreignKey: 'role_id' });
+    User.associate = (models) => {
+        User.belongsTo(models.UserRole, { foreignKey: 'role_id' });
+    }
   
     return User;
   };

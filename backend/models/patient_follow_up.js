@@ -33,15 +33,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       follow_up_date: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         allowNull: false,
       },
       created_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
       updated_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
     }, {
@@ -49,8 +49,10 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     });
   
-    PatientFollowUp.belongsTo(User, { foreignKey: 'patient_id' });
-    PatientFollowUp.belongsTo(User, { foreignKey: 'physician_id' });
-  
+    PatientFollowUp.associate = (models) => {
+      PatientFollowUp.belongsTo(models.users, { foreignKey: 'patient_id' });
+      PatientFollowUp.belongsTo(models.users, { foreignKey: 'physician_id' });
+    }
+
     return PatientFollowUp;
   };

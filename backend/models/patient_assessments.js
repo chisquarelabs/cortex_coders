@@ -34,21 +34,22 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       created_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
       updated_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
     }, {
       tableName: 'patient_assessments',
       timestamps: false,
     });
-  
-    PatientAssessment.belongsTo(User, { foreignKey: 'patient_id' });
-    PatientAssessment.belongsTo(Question, { foreignKey: 'question_id' });
-    PatientAssessment.belongsTo(Answer, { foreignKey: 'answer_id' });
-  
+
+    PatientAssessment.associate = (models) => {
+      PatientAssessment.belongsTo(models.users, { foreignKey: 'patient_id' });
+      PatientAssessment.belongsTo(models.Question, { foreignKey: 'question_id' });
+      PatientAssessment.belongsTo(models.Answer, { foreignKey: 'answer_id' });
+    };
     return PatientAssessment;
   };

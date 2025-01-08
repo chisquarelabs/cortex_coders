@@ -18,6 +18,7 @@ import ForgotPassword from './ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import AppTheme from './theme/AppTheme';
 import ColorModeSelect from './theme/ColorModeSelect';
+import { useNavigate } from 'react-router-dom';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -61,15 +62,208 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
+// export default function SignIn(props) {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [emailError, setEmailError] = useState(false);
+//   const [emailErrorMessage, setEmailErrorMessage] = useState('');
+//   const [passwordError, setPasswordError] = useState(false);
+//   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+//   const [open, setOpen] = useState(false);
+//   useEffect(() => {
+//     console.log('useEffect')
+//   }, []);
+//   const handleClickOpen = () => {
+//     setOpen(true);
+//   };
+
+//   const handleClose = () => {
+//     setOpen(false);
+//   };
+
+//   const handleSubmit = async(event) => {
+//     if (emailError || passwordError) {
+//       event.preventDefault();
+//       return;
+//     }
+//     const data = new FormData(event.currentTarget);
+//     // console.log({
+//     //   email: data.get('email'),
+//     //   password: data.get('password'),
+//     // });
+//    console.log('before response')
+//     const response = await fetch('http://localhost:8000/api/login', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         email,
+//         password,
+//       }),
+//     }).then(async() => {
+//       const result = await response.json(); // Handle the response
+//   console.log(result); // Check what is being returned
+
+//   if (result.success) {
+//     // Handle successful login, e.g., redirect to dashboard, display success message, etc.
+//     console.log(result.message);
+//   } else {
+//     // Handle login failure, e.g., show error message to user.
+//     console.error(result.message);
+//   }
+  
+//     })
+
+  
+//   };
+
+//   const validateInputs = () => {
+//     const email = document.getElementById('email');
+//     const password = document.getElementById('password');
+
+//     let isValid = true;
+
+//     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+//       setEmailError(true);
+//       setEmailErrorMessage('Please enter a valid email address.');
+//       isValid = false;
+//     } else {
+//       setEmailError(false);
+//       setEmailErrorMessage('');
+//     }
+
+//     if (!password.value || password.value.length < 6) {
+//       setPasswordError(true);
+//       setPasswordErrorMessage('Password must be at least 6 characters long.');
+//       isValid = false;
+//     } else {
+//       setPasswordError(false);
+//       setPasswordErrorMessage('');
+//     }
+
+//     return isValid;
+//   };
+
+//   return (
+//     <AppTheme {...props}>
+//       <CssBaseline enableColorScheme />
+//       <SignInContainer direction="column" justifyContent="space-between">
+//         <ColorModeSelect sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
+//         <Card variant="outlined">
+//           <SitemarkIcon />
+//           <Typography
+//             component="h1"
+//             variant="h4"
+//             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
+//           >
+//             Sign in
+//           </Typography>
+//           <Box
+//             component="form"
+//             onSubmit={handleSubmit}
+//             noValidate
+//             sx={{
+//               display: 'flex',
+//               flexDirection: 'column',
+//               width: '100%',
+//               gap: 2,
+//             }}
+//           >
+//             <FormControl>
+//               <FormLabel htmlFor="email">Email</FormLabel>
+//               <TextField
+//                 error={emailError}
+//                 helperText={emailErrorMessage}
+//                 id="email"
+//                 type="email"
+//                 name="email"
+//                 placeholder="your@email.com"
+//                 autoComplete="email"
+//                 autoFocus
+//                 required
+//                 fullWidth
+//                 variant="outlined"
+//                 color={emailError ? 'error' : 'primary'}
+//                 value={email}
+//                 onChange={(e) => {
+//                   setEmail(e.target.value);
+//                 }}
+//               />
+//             </FormControl>
+//             <FormControl>
+//               <FormLabel htmlFor="password">Password</FormLabel>
+//               <TextField
+//                 error={passwordError}
+//                 helperText={passwordErrorMessage}
+//                 name="password"
+//                 placeholder="••••••"
+//                 type="password"
+//                 id="password"
+//                 autoComplete="current-password"
+//                 autoFocus
+//                 required
+//                 fullWidth
+//                 variant="outlined"
+//                 color={passwordError ? 'error' : 'primary'}
+//                 value={password}
+//                 onChange={(e) => {
+//                   setPassword(e.target.value);
+//                 }}
+//               />
+//             </FormControl>
+//             <FormControlLabel
+//               control={<Checkbox value="remember" color="primary" />}
+//               label="Remember me"
+//             />
+//             <ForgotPassword open={open} handleClose={handleClose} />
+//             <Button
+//               type="submit"
+//               fullWidth
+//               variant="contained"
+//               onClick={validateInputs}
+//             >
+//               Sign in
+//             </Button>
+//             <Link
+//               component="button"
+//               type="button"
+//               onClick={handleClickOpen}
+//               variant="body2"
+//               sx={{ alignSelf: 'center' }}
+//             >
+//               Forgot your password?
+//             </Link>
+//           </Box>
+          
+//           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            
+//             <Typography sx={{ textAlign: 'center' }}>
+//               Don&apos;t have an account?{' '}
+//               <Link
+//                 href="/sign-up"
+//                 variant="body2"
+//                 sx={{ alignSelf: 'center' }}
+//               >
+//                 Sign up
+//               </Link>
+//             </Typography>
+//           </Box>
+//         </Card>
+//       </SignInContainer>
+//     </AppTheme>
+//   );
+// }
+
 export default function SignIn(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-
+  const [emailError, setEmailError] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -78,48 +272,10 @@ export default function SignIn(props) {
     setOpen(false);
   };
 
-  const handleSubmit = async(event) => {
-    if (emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
-    const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-   
-    const response = await fetch('http://localhost:8000/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: data.get('email'),
-        password: data.get('password'),
-      }),
-    });
-
-  const result = await response.json(); // Handle the response
-  console.log(result); // Check what is being returned
-
-  if (result.success) {
-    // Handle successful login, e.g., redirect to dashboard, display success message, etc.
-    console.log(result.message);
-  } else {
-    // Handle login failure, e.g., show error message to user.
-    console.error(result.message);
-  }
-  
-  };
-
   const validateInputs = () => {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-
     let isValid = true;
 
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setEmailError(true);
       setEmailErrorMessage('Please enter a valid email address.');
       isValid = false;
@@ -128,7 +284,7 @@ export default function SignIn(props) {
       setEmailErrorMessage('');
     }
 
-    if (!password.value || password.value.length < 6) {
+    if (!password || password.length < 6) {
       setPasswordError(true);
       setPasswordErrorMessage('Password must be at least 6 characters long.');
       isValid = false;
@@ -138,6 +294,38 @@ export default function SignIn(props) {
     }
 
     return isValid;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!validateInputs()) {
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const result = await response.json();
+      console.log(result);
+
+      if (result.success) {
+        console.log('Login successful:', result.message);
+        navigate('/Home'); 
+        // Handle successful login, e.g., navigate to a new page
+      } else {
+        console.error('Login failed:', result.message);
+      }
+    } catch (error) {
+      console.error('Error during login:', error.message);
+    } finally {
+    }
   };
 
   return (
@@ -175,15 +363,11 @@ export default function SignIn(props) {
                 name="email"
                 placeholder="your@email.com"
                 autoComplete="email"
-                autoFocus
                 required
                 fullWidth
                 variant="outlined"
-                color={emailError ? 'error' : 'primary'}
                 value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
             <FormControl>
@@ -196,15 +380,11 @@ export default function SignIn(props) {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                autoFocus
                 required
                 fullWidth
                 variant="outlined"
-                color={passwordError ? 'error' : 'primary'}
                 value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
             <FormControlLabel
@@ -216,9 +396,8 @@ export default function SignIn(props) {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={validateInputs}
             >
-              Sign in
+       Sign in
             </Button>
             <Link
               component="button"
@@ -230,16 +409,10 @@ export default function SignIn(props) {
               Forgot your password?
             </Link>
           </Box>
-          
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            
             <Typography sx={{ textAlign: 'center' }}>
               Don&apos;t have an account?{' '}
-              <Link
-                href="/sign-up"
-                variant="body2"
-                sx={{ alignSelf: 'center' }}
-              >
+              <Link href="/sign-up" variant="body2" sx={{ alignSelf: 'center' }}>
                 Sign up
               </Link>
             </Typography>

@@ -26,19 +26,23 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
       },
       created_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
       updated_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
     }, {
       tableName: 'answers',
       timestamps: false,
     });
+
+    Answer.associate = (models) => {
+      Answer.belongsTo(models.Question, { foreignKey: 'question_id' });
+    };
   
-    Answer.belongsTo(Question, { foreignKey: 'question_id' });
+    //Answer.belongsTo(Question, { foreignKey: 'question_id' });
   
     return Answer;
   };
