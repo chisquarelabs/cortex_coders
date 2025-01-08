@@ -11,13 +11,14 @@ const db = new Client({
   db.connect();
 console.log('lll')
 const adminEmail = "admin@gmail.com";
-const adminPassword = "123";
+const adminPassword = "P1nkparr0t";
 
   const Login = (req, res) => {
     try {
-        console.log('ooo')
+        console.log('ooo111')
     console.log('req---',req.body)
     if (req.body.email === adminEmail && req.body.password === adminPassword) {
+        console.log('success')
       res.status(200).send({
         message: "Admin logged in successfully",
         success: true,
