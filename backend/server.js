@@ -1,15 +1,23 @@
 const express = require('express');
-
-
-// Next initialize the application
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
+const indexRouter = require('./router/index'); // Import login router
 
-// routing path
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+// Middleware to parse JSON
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+// Use the router for /api routes
+app.use('/api', indexRouter);
+
+// Default route to handle unmatched requests
+app.use((req, res) => {
+  res.status(404).send('Route not found');
 });
 
 // Start the server
-app.listen(3001, () => {
-  console.log('Server started on port 3000');
+const PORT = 8000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:8000`);
 });

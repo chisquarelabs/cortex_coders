@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "TcsvC8wPtcePyy0ke32t",
+    "database": "cortex",
+    "host": 5432,
+    "dialect": "postgres"
+  }
+}
