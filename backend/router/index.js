@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Login, Register, Assessment, Summery, ViewAssessment } = require('../controllers');
+const { Login, Register, Assessment, Summery, ViewAssessment, AssesmentQuestion } = require('../controllers');
 // Define the /api/login route
 // router.post('/login', (req, res) => {
 //   const { email, password } = req.body;
@@ -17,5 +17,6 @@ router.post('/register', Register);
 router.post('/assessment', Assessment);
 router.get('/summery', Summery);
 router.get('/viewAssessment/:id', ViewAssessment);
+router.get('/questions', AssesmentQuestion);
 
 module.exports = router;

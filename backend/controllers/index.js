@@ -78,8 +78,33 @@ const Register = async (req, res) => {
 };
 
 const Assessment = async (req, res) => {
+  // console.log('------req.body', req.body);
     let score;
   try {
+    const questions = await Question.findAll();
+    const answers = await Answer.findAll();
+
+    console.log('-----------questions', questions[0].dataValues);
+    // console.log('-----------answers', answers);
+  
+    const transformedData = {};
+
+    for (const key in req.body) {
+        if (req.body.hasOwnProperty(key)) {
+          const questionObject = questions.find((item) => item.dataValues.question_text.replace(/[^a-zA-Z0-9]/g, '').toLowerCase() === key.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
+    console.log('-----------questionObject', questionObject);
+
+            const questionId = questionObject.dataValues['id']; // Get the question_id from the key (question_text)
+            const answerId = answers.find((item) => item.dataValues.question_id === questionId && item.dataValues.answer_text.replace(/[^a-zA-Z0-9]/g, '').toLowerCase() === req.body[key].replace(/[^a-zA-Z0-9]/g, '').toLowerCase()); // Get the answer_id from the value (answer_text)
+
+            if (questionId !== undefined && answerId !== undefined) {
+                transformedData[questionId] = {answerId};
+            }
+        }
+    }
+
+    console.log('-------------transformedData', transformedData)
+
     const { patient_id, assessments } = req.body;
 
     for (const sec of assessments) {
@@ -188,10 +213,34 @@ const ViewAssessment = async (req, res) => {
   }
 };
 
+const AssesmentQuestion = async (req, res) => {
+  try {
+        const questions= await Answer.findAll(
+          {
+            include: [
+              {
+                model: Question,
+              },
+            ],
+          },
+        );
+        // console.log('--------------questions', questions);
+
+    res.status(200).send({
+      message: "Accessment submitted successfully",
+      success: true,
+    });
+  } catch (err) {
+    console.log("errr---", err);
+    res.status(500).send({ message: "User not created", success: false });
+  }
+}
+
 module.exports = {
   Login,
   Register,
   Assessment,
   Summery,
   ViewAssessment,
+  AssesmentQuestion,
 };

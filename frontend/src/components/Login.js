@@ -321,7 +321,7 @@ export default function SignIn(props) {
         if (result.role === "Physician") {
           navigate('/appoinments');
         } else {
-          navigate('/Home'); 
+          navigate('/patient-wizard');
         }
         // Handle successful login, e.g., navigate to a new page
       } else {
