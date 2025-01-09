@@ -50,7 +50,7 @@ function Register() {
       formData.append("gender", gender);
 
       axios
-        .post("http://localhost:8000/api/register", formData)
+        .post("http://localhost:3002/api/register", formData)
         .then((response) => {
           if (response.data.success) {
             navigate("/admin/success");

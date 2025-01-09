@@ -304,7 +304,7 @@ export default function SignIn(props) {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/login', {
+      const response = await fetch('http://localhost:3002/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -317,7 +317,12 @@ export default function SignIn(props) {
 
       if (result.success) {
         console.log('Login successful:', result.message);
-        navigate('/Home'); 
+        localStorage.setItem('user_id', result.user_id); 
+        if (result.role === "Physician") {
+          navigate('/appoinments');
+        } else {
+          navigate('/Home'); 
+        }
         // Handle successful login, e.g., navigate to a new page
       } else {
         console.error('Login failed:', result.message);
