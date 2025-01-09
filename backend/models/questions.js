@@ -18,19 +18,21 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       created_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
       updated_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
     }, {
       tableName: 'questions',
       timestamps: false,
     });
-  
-    Question.belongsTo(QuestionCategory, { foreignKey: 'category_id' });
-  
+
+    Question.associate = (models) => {
+      Question.belongsTo(models.QuestionCategory, { foreignKey: 'category_id' });
+    }
+
     return Question;
   };

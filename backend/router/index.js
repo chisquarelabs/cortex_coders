@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Login } = require('../controllers');
+const { Login, Register, Assessment, Summery } = require('../controllers');
 // Define the /api/login route
 // router.post('/login', (req, res) => {
 //   const { email, password } = req.body;
@@ -13,5 +13,8 @@ const { Login } = require('../controllers');
 //   return res.status(401).json({ message: 'Invalid credentials!' });
 // });
 router.post('/login', Login);
+router.post('/register', Register);
+router.post('/assessment', Assessment);
+router.get('/summery', Summery);
 
 module.exports = router;

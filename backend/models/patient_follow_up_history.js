@@ -22,15 +22,15 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
       },
       follow_up_date: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         allowNull: false,
       },
       created_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
       updated_at: {
-        type: DataTypes.TIMESTAMP,
+        type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
     }, {
@@ -38,8 +38,10 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false,
     });
   
-    PatientFollowUpHistory.belongsTo(User, { foreignKey: 'patient_id' });
-    PatientFollowUpHistory.belongsTo(User, { foreignKey: 'physician_id' });
-  
+    PatientFollowUpHistory.associate = (models) => {
+      PatientFollowUpHistory.belongsTo(models.users, { foreignKey: 'patient_id' });
+      PatientFollowUpHistory.belongsTo(models.users, { foreignKey: 'physician_id' });
+    }
+
     return PatientFollowUpHistory;
   };
