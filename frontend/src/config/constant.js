@@ -1,1 +1,1 @@
-export const BACKEND_URL= 'http://localhost:3002';
+export const BACKEND_URL= 'http://cortex-lb-331664132.eu-west-2.elb.amazonaws.com';

@@ -53,10 +53,10 @@ const PhysicianAppointments = () => {
             Hello Dr. Kevinson
           </Typography>
           <Typography variant="body1" className="text-muted">
-            You have <strong>X</strong> patients to review
+            You have <strong>20</strong> patients to review
           </Typography>
           <Typography variant="body1" className="text-muted">
-            You have <strong>Y</strong> patients to follow up
+            You have <strong>30</strong> patients to follow up
           </Typography>
         </Box>
 
