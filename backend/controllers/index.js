@@ -3,7 +3,9 @@ const Sequelize = require("sequelize");
 const db = require("../models");
 const Users = require("../models").users;
 const UserRole = require("../models").UserRole;
-const PatientAccessment = require("../models").PatientAccessment;
+const PatientAssessment = require("../models").PatientAssessment;
+const Question = require("../models").Question;
+const Answer = require("../models").Answer;
 
 const Login = async (req, res) => {
   try {
@@ -87,7 +89,7 @@ const Assessment = async (req, res) => {
         if(sec.answer_id !== 0)
             score=+1;
         // Create the Section record for each answer with associated patient_id and question_id
-        await PatientAccessment.create({
+        await PatientAssessment.create({
           patient_id,
           question_id: sec.question_id,
           answer: sec.answer_id,
@@ -135,9 +137,53 @@ const Summery = async (req, res) => {
   }
 };
 
+const ViewAssessment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("patient_id---", id);
+    const assessments = await PatientAssessment.findAll({
+      where: { patient_id: id },
+      include: [
+        {
+          model: Answer,
+          attributes: ["answer_text"],
+          include: [
+            {
+              model: Question,
+              attributes: ["question_text"],
+            },
+          ],
+        },
+      ],
+    });
+    const patientId = assessments[0].patient_id; // Assuming all rows are for the same patient.
+    const section = assessments.map((item) => ({
+      question: item.Answer.Question.question_text,
+      answer: item.Answer.answer_text,
+    }));
+
+    const transformedData = {
+      id: patientId,
+      section,
+    };
+    console.log("transformedData---", transformedData);
+    res.status(200).send({
+      assessments: transformedData,
+      message: "View assessment loaded successfully",
+      success: true,
+    });
+  } catch (err) {
+    console.log("errr---", err);
+    res
+      .status(500)
+      .send({ message: "View assessment not loaded", success: false });
+  }
+};
+
 module.exports = {
   Login,
   Register,
   Assessment,
   Summery,
+  ViewAssessment,
 };

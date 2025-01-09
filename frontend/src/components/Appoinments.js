@@ -1,8 +1,28 @@
 import React from 'react';
 import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const PhysicianAppointments = () => {
+  const navigate = useNavigate();
+  const axiosInstance = axios.create();
+  const viewPatient = async (patientId) => {
+    console.log('patientId----',patientId)
+
+    try {
+      const PatientAssessment = await axiosInstance
+      .get(`http://localhost:8000/api/viewAssessment/${patientId}`);
+      console.log('PatientAssessment---',PatientAssessment)
+      navigate('/PatientInfo', {
+        state: {
+          PatientAssessment: PatientAssessment.data,
+      },
+    });
+    } catch (error) {
+      console.error('Error during view patient:', error.message);
+    } 
+  };
   return (
     <Box
       className="container-fluid"
@@ -64,7 +84,7 @@ const PhysicianAppointments = () => {
                   <TableCell>Medicine A - 10mg</TableCell>
                   <TableCell>12/01/2025</TableCell>
                   <TableCell>
-                    <Button variant="contained" color="primary" size="small" onClick={'/patientinfo'}>
+                    <Button variant="contained" color="primary" size="small" onClick={() => viewPatient(2)}>
                       View
                     </Button>
                   </TableCell>

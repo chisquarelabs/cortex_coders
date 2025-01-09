@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -11,6 +12,9 @@ import {
 } from '@mui/material';
 
 const PatientInfo = () => {
+  const location = useLocation();
+  const patientData = location.state;
+  console.log('patientData---',patientData)
   // State for the left-side expandable boxes
   const [expandedBox, setExpandedBox] = useState(null);
 
