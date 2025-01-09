@@ -9,6 +9,7 @@ import PatientInfo from "./components/PatientInfo";
 import PatientSummary from "./components/Summary";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 function App() {

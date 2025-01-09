@@ -10,6 +10,7 @@ import {
   FormControl,
   InputLabel,
 } from '@mui/material';
+import DatePicker from 'react-datepicker';
 
 const PatientInfo = () => {
   const location = useLocation();
@@ -21,6 +22,7 @@ const PatientInfo = () => {
   // State for the right-side dropdowns
   const [medication, setMedication] = useState('');
   const [testReferred, setTestReferred] = useState('');
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   // Toggle function for the left-side boxes
   const toggleBox = (boxName) => {
@@ -163,6 +165,52 @@ const PatientInfo = () => {
               This is the remarks section. Here, you can add any additional notes or information about the patient.
             </Typography>
           </Box>
+          <Box
+            sx={{
+              padding: 2,
+              border: "1px solid #ddd",
+              borderRadius: 2,
+              backgroundColor: "#f9f9f9",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <Typography variant="h6" sx={{ marginBottom: 2, color: "#333" }}>
+              Appointment Date
+            </Typography>
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              className="form-control"
+              calendarClassName="custom-calendar"
+              popperClassName="custom-popper"
+              dateFormat="MMMM d, yyyy"
+              showPopperArrow={false}
+              customInput={
+                <Button
+                  variant="outlined"
+                  sx={{
+                    textTransform: "none",
+                    padding: "10px 15px",
+                    width: "100%",
+                    justifyContent: "flex-start",
+                    backgroundColor: "white",
+                    color: "#555",
+                    fontSize: "16px",
+                    borderRadius: "8px",
+                    "&:hover": {
+                      backgroundColor: "#f0f0f0",
+                    },
+                  }}
+                >
+                  {selectedDate
+                    ? selectedDate.toLocaleDateString("en-US")
+                    : "Select Date"}
+                </Button>
+              }
+            />
+          </Box>
+
+
 
           {/* Remarks Section */}
          
