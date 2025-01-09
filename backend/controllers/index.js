@@ -7,6 +7,7 @@ const PatientAssessment = require("../models").PatientAssessment;
 const Question = require("../models").Question;
 const Answer = require("../models").Answer;
 const QuestionCategory = require("../models").QuestionCategory;
+const Medication = require("../models").Medication;
 
 const Login = async (req, res) => {
   try {
@@ -188,10 +189,29 @@ const ViewAssessment = async (req, res) => {
   }
 };
 
+const GetMedication = async (req, res) => {
+    try {
+      const medication = await Medication.findAll({
+      });
+  
+      res.status(200).send({
+        medication,
+        message: "Medication loaded successfully",
+        success: true,
+      });
+    } catch (err) {
+      console.log("errr---", err);
+      res
+        .status(500)
+        .send({ message: "Medication not loaded", success: false });
+    }
+  };
+
 module.exports = {
   Login,
   Register,
   Assessment,
   Summery,
   ViewAssessment,
+  GetMedication,
 };

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from "axios";
 import {
   Box,
   Button,
@@ -14,19 +15,33 @@ import {
 const PatientInfo = () => {
   const location = useLocation();
   const patientData = location.state;
-  console.log('patientData---',patientData)
+  console.log('patientData---',patientData);
+  const axiosInstance = axios.create();
   // State for the left-side expandable boxes
   const [expandedBox, setExpandedBox] = useState(null);
 
   // State for the right-side dropdowns
-  const [medication, setMedication] = useState('');
+
   const [testReferred, setTestReferred] = useState('');
 
-  // Toggle function for the left-side boxes
+  const [medication, setMedication] = useState([]);
+
   const toggleBox = (boxName) => {
     setExpandedBox((prev) => (prev === boxName ? null : boxName)); // Toggles the clicked box
   };
+  useEffect(() => {
+    const fetchMedicationData = async () => {
+      try {
+        const medicationResult = await axios.get('http://localhost:3002/api/getMedication');
+        setMedication(medicationResult.data);  // Setting state with fetched data
+      } catch (error) {
+        console.error('Error fetching medication:', error.message);
+      }
+    };
 
+    fetchMedicationData();  // Fetching medication data
+  }, []);
+console.log('med---',medication)
   return (
     <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
       {/* Heading with patient name */}
