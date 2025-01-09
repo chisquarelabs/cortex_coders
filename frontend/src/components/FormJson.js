@@ -9,7 +9,7 @@ export const json = {
         "elements": [
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "qualification",
             "title": "Qualification",
             "choices": [
@@ -22,7 +22,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "occupation",
             "title": "Occupation",
             "choices": [
@@ -35,7 +35,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "learning-disabilities",
             "title": "Learning Disabilities",
             "choices": [
@@ -49,7 +49,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "smoker",
             "title": "Smoker",
             "choices": [
@@ -60,7 +60,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "alcoholic",
             "title": "Alcoholic",
             "choices": [
@@ -71,7 +71,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "hospitalization",
             "title": "Hospitalization",
             "choices": [
@@ -82,7 +82,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "diabetic",
             "title": "Diabetic",
             "choices": [
@@ -93,7 +93,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "thyroid",
             "title": "Thyroid",
             "choices": [
@@ -105,7 +105,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "cancer",
             "title": "Cancer",
             "choices": [
@@ -116,7 +116,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "stroke",
             "title": "Stroke / Cerebrovascular Attack",
             "choices": [
@@ -127,7 +127,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "cardiac-problems",
             "title": "Cardiac Problems",
             "choices": [
@@ -140,7 +140,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "head-injuries",
             "title": "Head Injuries",
             "choices": [
@@ -153,7 +153,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "seizures",
             "title": "Seizure / Epilepsy / Fits",
             "choices": [
@@ -164,7 +164,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "renal-conditions",
             "title": "Renal Conditions",
             "choices": [
@@ -173,6 +173,90 @@ export const json = {
               "Nephrectomy"
             ],
             "colCount": 3
+          },
+          {
+            "type": "boolean",
+            "name": "qualification-assistance",
+            "title": "Do you require assistance with understanding your qualification level?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "occupation-assistance",
+            "title": "Do you require assistance in finding an occupation?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "learning-disabilities-assistance",
+            "title": "Do you require assistance due to any learning disabilities?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "smoking-assistance",
+            "title": "Do you require assistance to quit smoking?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "alcohol-assistance",
+            "title": "Do you require assistance to quit alcohol?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "hospitalization-assistance",
+            "title": "Do you require assistance related to recent hospitalization?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "diabetes-assistance",
+            "title": "Do you require assistance in managing diabetes?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "thyroid-assistance",
+            "title": "Do you require assistance in managing thyroid conditions?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "cancer-assistance",
+            "title": "Do you require assistance for cancer-related treatment or care?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "stroke-assistance",
+            "title": "Do you require assistance in managing the effects of a stroke?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "cardiac-assistance",
+            "title": "Do you require assistance in managing cardiac problems?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "head-injuries-assistance",
+            "title": "Do you require assistance due to head injuries?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "seizures-assistance",
+            "title": "Do you require assistance for managing seizures or epilepsy?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "renal-conditions-assistance",
+            "title": "Do you require assistance for renal conditions?",
+            "titleLocation": "left"
           }
         ]
       }
