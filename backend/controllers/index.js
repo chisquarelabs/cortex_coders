@@ -2,27 +2,52 @@ const { Client } = require("pg");
 const Sequelize = require("sequelize");
 const db = require("../models");
 const Users = require("../models").users;
+const UserRole = require("../models").UserRole;
 const PatientAccessment = require("../models").PatientAccessment;
 
 const Login = async (req, res) => {
   try {
+
+    // Fetch the user and their role using Sequelize's include feature
     const user = await Users.findOne({
       where: { email: req.body.email, password: req.body.password },
-      attributes: ["id"],
+      attributes: ["id","role_id"],
+      include: {
+        model: UserRole,
+        attributes: ["role_name"], 
+      },
     });
-    console.log("user---", user);
+
     if (user) {
-      res.status(200).send({
-        message: "Admin logged in successfully",
-        success: true,
-      });
+      // Check if the user has the role "Physician"
+      if (user.UserRole && user.UserRole.role_name === 'Physician') {
+        return res.status(200).send({
+          message: "Physician logged in successfully",
+          success: true,
+          role: "Physician", 
+          user_id : user?.id
+        });
+      } else {
+        return res.status(200).send({
+          message: "User logged in successfully",
+          success: true,
+          role: "User", 
+          user_id : user?.id
+        });
+      }
+
     } else {
-      res
-        .status(500)
-        .send({ message: "Username or password is incorrect", success: false });
+      return res.status(401).send({
+        message: "Username or password is incorrect",
+        success: false,
+      });
     }
   } catch (err) {
     console.log("errr---", err);
+    return res.status(500).send({
+      message: "An error occurred",
+      success: false,
+    });
   }
 };
 
