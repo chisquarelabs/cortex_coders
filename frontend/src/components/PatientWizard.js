@@ -4,8 +4,10 @@ import { Survey } from "survey-react-ui";
 import "survey-core/defaultV2.min.css";
 import { json, questionList } from "./FormJson"
 import React, { useEffect, useState } from "react";
+import {  useNavigate } from 'react-router-dom';
 
 function SurveyComponent() {
+    const navigate = useNavigate();
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -58,6 +60,7 @@ function SurveyComponent() {
                 const result = await response.json();
                 console.log('Survey submission result:', result);
             } catch (err) {
+              navigate('/summary');
                 console.error('Error sending survey data:', err.message);
             }
         };
