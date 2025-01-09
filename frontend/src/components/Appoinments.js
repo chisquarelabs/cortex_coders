@@ -3,6 +3,7 @@ import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, T
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../config/constant';
 
 const PhysicianAppointments = () => {
   const navigate = useNavigate();
@@ -12,7 +13,8 @@ const PhysicianAppointments = () => {
 
     try {
       const PatientAssessment = await axiosInstance
-      .get(`http://localhost:3002/api/viewAssessment/${patientId}`);
+      // .get(`http://localhost:3002/api/viewAssessment/${patientId}`);
+      .get(`${BACKEND_URL}/api/viewAssessment/${patientId}`);
       console.log('PatientAssessment---',PatientAssessment)
       navigate('/PatientInfo', {
         state: {

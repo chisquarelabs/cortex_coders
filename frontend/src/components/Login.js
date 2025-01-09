@@ -19,6 +19,7 @@ import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import AppTheme from './theme/AppTheme';
 import ColorModeSelect from './theme/ColorModeSelect';
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../config/constant';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -304,7 +305,14 @@ export default function SignIn(props) {
     }
 
     try {
-      const response = await fetch('http://localhost:3002/api/login', {
+      // const response = await fetch('http://localhost:3002/api/login', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({ email, password }),
+      // });
+      const response = await fetch(`${BACKEND_URL}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

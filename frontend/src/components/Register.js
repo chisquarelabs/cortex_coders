@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import "../AdminPages/popup.css";
 import { Link } from "react-router-dom";
+import { BACKEND_URL } from "../config/constant";
 
 function Register() {
   const navigate = useNavigate();
@@ -50,7 +51,8 @@ function Register() {
       formData.append("gender", gender);
 
       axios
-        .post("http://localhost:3002/api/register", formData)
+        //.post("http://localhost:3002/api/register", formData)
+        .post(`${BACKEND_URL}/api/register`, formData)
         .then((response) => {
           if (response.data.success) {
             navigate("/admin/success");
