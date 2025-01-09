@@ -173,6 +173,90 @@ export const json = {
               "Nephrectomy"
             ],
             "colCount": 3
+          },
+          {
+            "type": "boolean",
+            "name": "qualification-assistance",
+            "title": "Do you require assistance with understanding your qualification level?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "occupation-assistance",
+            "title": "Do you require assistance in finding an occupation?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "learning-disabilities-assistance",
+            "title": "Do you require assistance due to any learning disabilities?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "smoking-assistance",
+            "title": "Do you require assistance to quit smoking?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "alcohol-assistance",
+            "title": "Do you require assistance to quit alcohol?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "hospitalization-assistance",
+            "title": "Do you require assistance related to recent hospitalization?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "diabetes-assistance",
+            "title": "Do you require assistance in managing diabetes?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "thyroid-assistance",
+            "title": "Do you require assistance in managing thyroid conditions?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "cancer-assistance",
+            "title": "Do you require assistance for cancer-related treatment or care?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "stroke-assistance",
+            "title": "Do you require assistance in managing the effects of a stroke?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "cardiac-assistance",
+            "title": "Do you require assistance in managing cardiac problems?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "head-injuries-assistance",
+            "title": "Do you require assistance due to head injuries?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "seizures-assistance",
+            "title": "Do you require assistance for managing seizures or epilepsy?",
+            "titleLocation": "left"
+          },
+          {
+            "type": "boolean",
+            "name": "renal-conditions-assistance",
+            "title": "Do you require assistance for renal conditions?",
+            "titleLocation": "left"
           }
         ]
       }
