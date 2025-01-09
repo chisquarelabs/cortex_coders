@@ -9,7 +9,7 @@ export const json = {
         "elements": [
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "qualification",
             "title": "Qualification",
             "choices": [
@@ -22,7 +22,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "occupation",
             "title": "Occupation",
             "choices": [
@@ -35,7 +35,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "learning-disabilities",
             "title": "Learning Disabilities",
             "choices": [
@@ -49,7 +49,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "smoker",
             "title": "Smoker",
             "choices": [
@@ -60,7 +60,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "alcoholic",
             "title": "Alcoholic",
             "choices": [
@@ -71,7 +71,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "hospitalization",
             "title": "Hospitalization",
             "choices": [
@@ -82,7 +82,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "diabetic",
             "title": "Diabetic",
             "choices": [
@@ -93,7 +93,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "thyroid",
             "title": "Thyroid",
             "choices": [
@@ -105,7 +105,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "cancer",
             "title": "Cancer",
             "choices": [
@@ -116,7 +116,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "stroke",
             "title": "Stroke / Cerebrovascular Attack",
             "choices": [
@@ -127,7 +127,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "cardiac-problems",
             "title": "Cardiac Problems",
             "choices": [
@@ -140,7 +140,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "head-injuries",
             "title": "Head Injuries",
             "choices": [
@@ -153,7 +153,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "seizures",
             "title": "Seizure / Epilepsy / Fits",
             "choices": [
@@ -164,7 +164,7 @@ export const json = {
           },
           {
             "type": "radiogroup",
-            "isRequired": true,
+
             "name": "renal-conditions",
             "title": "Renal Conditions",
             "choices": [
