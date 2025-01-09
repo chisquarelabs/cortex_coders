@@ -12,7 +12,7 @@ const PhysicianAppointments = () => {
 
     try {
       const PatientAssessment = await axiosInstance
-      .get(`http://localhost:8000/api/viewAssessment/${patientId}`);
+      .get(`http://localhost:3002/api/viewAssessment/${patientId}`);
       console.log('PatientAssessment---',PatientAssessment)
       navigate('/PatientInfo', {
         state: {

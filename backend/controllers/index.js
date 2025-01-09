@@ -6,6 +6,7 @@ const UserRole = require("../models").UserRole;
 const PatientAssessment = require("../models").PatientAssessment;
 const Question = require("../models").Question;
 const Answer = require("../models").Answer;
+const QuestionCategory = require("../models").QuestionCategory;
 
 const Login = async (req, res) => {
   try {
@@ -151,6 +152,12 @@ const ViewAssessment = async (req, res) => {
             {
               model: Question,
               attributes: ["question_text"],
+              include: [
+                {
+                  model: QuestionCategory,
+                  attributes: ["question_category"],
+                },
+              ],
             },
           ],
         },
@@ -158,6 +165,7 @@ const ViewAssessment = async (req, res) => {
     });
     const patientId = assessments[0].patient_id; // Assuming all rows are for the same patient.
     const section = assessments.map((item) => ({
+      questionCategory: item.Answer.Question.QuestionCategory.question_category,
       question: item.Answer.Question.question_text,
       answer: item.Answer.answer_text,
     }));
