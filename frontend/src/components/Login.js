@@ -304,7 +304,7 @@ export default function SignIn(props) {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/login', {
+      const response = await fetch('http://localhost:3002/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
